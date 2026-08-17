@@ -215,3 +215,76 @@ if (
   filterBlogs();
 
 }
+
+/* =================================
+   訪問者カウンター
+================================= */
+
+const visitorNumber =
+  document.querySelector(".visitor-number");
+
+
+if (visitorNumber && window.supabase) {
+
+  const SUPABASE_URL =
+    "https://lsmghojbzokpbpsyymui.supabase.co";
+
+  const SUPABASE_KEY =
+    "ここにSupabaseのPublishable key";
+
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  async function updateVisitorCount() {
+
+    try {
+
+      /* 訪問者数を +1 */
+
+      const { data, error } =
+        await supabaseClient.rpc(
+          "increment_visitor_count"
+        );
+
+
+      if (error) {
+
+        console.error(
+          "訪問者カウンターエラー:",
+          error
+        );
+
+        return;
+
+      }
+
+
+      /* 数字を表示 */
+
+      if (data !== null) {
+
+        visitorNumber.textContent =
+          String(data).padStart(6, "0");
+
+      }
+
+    } catch (error) {
+
+      console.error(
+        "訪問者カウンターエラー:",
+        error
+      );
+
+    }
+
+  }
+
+
+  updateVisitorCount();
+
+}
