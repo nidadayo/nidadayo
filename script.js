@@ -175,7 +175,45 @@ if (
   filterBlogs();
 
 }
+/* =================================
+   秘密ワードで管理者ログインを表示
+================================= */
 
+const secretWord = "nida-admin";
+
+const adminLogin =
+  document.getElementById("adminLogin");
+
+const blogSearchForAdmin =
+  document.getElementById("blogSearch");
+
+
+if (
+  adminLogin &&
+  blogSearchForAdmin
+) {
+
+  blogSearchForAdmin.addEventListener(
+    "input",
+    () => {
+
+      const keyword =
+        blogSearchForAdmin.value
+          .trim()
+          .toLowerCase();
+
+
+      if (keyword === secretWord) {
+
+        adminLogin.style.display =
+          "block";
+
+      }
+
+    }
+  );
+
+}
 
 /* =================================
    Supabase
