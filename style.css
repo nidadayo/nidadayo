@@ -1919,3 +1919,131 @@ footer {
   }
 
 }
+
+/* =================================
+   管理者ログイン
+   控えめ・グレー・中央寄せ
+================================= */
+
+#adminLogin {
+  width: min(90%, 420px);
+
+  margin: 50px auto;
+
+  padding: 28px 24px;
+
+  box-sizing: border-box;
+
+  background: #eeeeee;
+
+  border: 1px solid #d5d5d5;
+
+  border-radius: 16px;
+
+  text-align: center;
+
+  color: #555555;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+/* タイトル */
+
+#adminLogin h2 {
+  margin: 0 0 22px;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  color: #555555;
+}
+
+
+/* 入力欄 */
+
+#adminLogin input {
+  display: block;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin: 0 0 12px;
+
+  padding: 12px 14px;
+
+  border: 1px solid #cccccc;
+
+  border-radius: 10px;
+
+  background: #f8f8f8;
+
+  color: #555555;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+
+/* 入力欄をクリックしたとき */
+
+#adminLogin input:focus {
+  border-color: #999999;
+
+  background: #ffffff;
+}
+
+
+/* ログインボタン */
+
+#adminLogin button {
+  display: block;
+
+  width: 100%;
+
+  margin-top: 6px;
+
+  padding: 12px;
+
+  border: 1px solid #bbbbbb;
+
+  border-radius: 10px;
+
+  background: #777777;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+/* ボタンに触れたとき */
+
+#adminLogin button:hover {
+  background: #666666;
+}
+
+
+/* スマホ */
+
+@media (max-width: 600px) {
+
+  #adminLogin {
+    width: calc(100% - 30px);
+
+    margin: 40px auto;
+
+    padding: 24px 18px;
+  }
+
+}
