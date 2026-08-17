@@ -88,35 +88,41 @@
     質問箱を確認するにはログインしてください。
   </p>
 
+<section
+  style="
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 99999 !important;
+    background: white !important;
+    color: black !important;
+    padding: 30px !important;
+    margin: 30px !important;
+  "
+>
 
-  <form id="loginForm"
-        class="admin-form">
+  <h1>管理者ログイン</h1>
 
+  <input
+    type="email"
+    placeholder="メールアドレス"
+  >
 
-    <input
-      type="email"
-      id="loginEmail"
-      placeholder="メールアドレス"
-      autocomplete="email"
-      required
-    >
+  <br><br>
 
+  <input
+    type="password"
+    placeholder="パスワード"
+  >
 
-    <input
-      type="password"
-      id="loginPassword"
-      placeholder="パスワード"
-      autocomplete="current-password"
-      required
-    >
+  <br><br>
 
+  <button>
+    ログイン
+  </button>
 
-    <button
-      type="submit"
-      id="loginButton"
-    >
-      ログイン
-    </button>
+</section>
 
 
   </form>
