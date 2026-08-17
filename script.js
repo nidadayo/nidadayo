@@ -216,3 +216,64 @@ if (window.supabase) {
     );
 
 }
+
+/* =================================
+   訪問者カウンター
+================================= */
+
+const visitorNumber =
+  document.querySelector(".visitor-number");
+
+
+if (
+  visitorNumber &&
+  supabaseClient
+) {
+
+  async function updateVisitorCount() {
+
+    try {
+
+      const { data, error } =
+        await supabaseClient.rpc(
+          "increment_visitor_count"
+        );
+
+
+      if (error) {
+
+        console.error(
+          "訪問者カウンターエラー:",
+          error
+        );
+
+        return;
+
+      }
+
+
+      if (data !== null) {
+
+        visitorNumber.textContent =
+          String(data).padStart(
+            6,
+            "0"
+          );
+
+      }
+
+    } catch (error) {
+
+      console.error(
+        "訪問者カウンターエラー:",
+        error
+      );
+
+    }
+
+  }
+
+
+  updateVisitorCount();
+
+}
