@@ -63,7 +63,7 @@
 
 
 
-<main class="page">
+<main class="profile-page">
 
 
 <!-- =========================
@@ -85,93 +85,172 @@
 
 
 <!-- =========================
-     プロフィール
+     プロフィール画像
 ========================= -->
 
-<section class="profile-card fade-in">
+<section class="profile-hero fade-in">
+
+  <div class="profile-image">
+
+    <img
+      src="profile.jpg"
+      alt="にだのプロフィール画像"
+    >
+
+  </div>
+
+</section>
 
 
-  <div class="profile-icon">
 
-    にだ
+<!-- =========================
+     プロフィール情報
+========================= -->
+
+<section class="profile-info fade-in">
+
+
+  <div class="profile-row">
+
+    <p class="profile-label">
+      NAME
+    </p>
+
+    <p class="profile-value">
+      にだ
+    </p>
 
   </div>
 
 
 
-  <div class="profile-content">
+  <div class="profile-row">
 
-
-    <h2>
-      にだのうぇぶ
-    </h2>
-
-
-    <p>
-      にだだよー
+    <p class="profile-label">
+      趣味
     </p>
 
+    <p class="profile-value">
+      推し活
+    </p>
 
-
-    <dl>
-
-
-      <div>
-
-        <dt>
-          趣味
-        </dt>
-
-        <dd>
-          推し活
-        </dd>
-
-      </div>
+  </div>
 
 
 
-      <div>
+  <div class="profile-row">
 
-        <dt>
-          好きなもの
-        </dt>
+    <p class="profile-label">
+      好きなもの
+    </p>
 
-        <dd>
+    <p class="profile-value">
 
-          ブルアカのケイちゃん<br>
+      ブルアカのケイちゃん<br>
+      妖夢ちゃん
 
-          妖夢ちゃん
+    </p>
 
-        </dd>
-
-      </div>
-
+  </div>
 
 
-      <div>
 
-        <dt>
-          SNS
-        </dt>
+  <div class="profile-row">
 
-        <dd>
+    <p class="profile-label">
+      SNS
+    </p>
 
-          <!-- TwitterのURLはあとで変更 -->
+    <p class="profile-value">
 
-          <a href="#"
-             class="sns-link">
+      <a
+        href="https://x.com/NidaNida1291289"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="profile-link"
+      >
+        𝕏 @NidaNida1291289
+      </a>
 
-            Twitter
+    </p>
 
-          </a>
-
-        </dd>
-
-      </div>
+  </div>
 
 
-    </dl>
 
+  <div class="profile-row">
+
+    <p class="profile-label">
+      MESSAGE
+    </p>
+
+    <p class="profile-value">
+      にだだよ〜！ケイちゃん美味しそう。
+    </p>
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     訪問者カウンター
+========================= -->
+
+<section class="visitor-box fade-in">
+
+  <p class="box-label">
+    VISITOR
+  </p>
+
+  <p class="visitor-number">
+    000001
+  </p>
+
+  <p class="visitor-text">
+    人目の訪問者です
+  </p>
+
+</section>
+
+
+
+<!-- =========================
+     質問箱
+========================= -->
+
+<section class="question-box fade-in">
+
+  <p class="box-label">
+    QUESTION
+  </p>
+
+  <h2>
+    質問箱
+  </h2>
+
+  <p class="question-description">
+    にだに質問してみてね！
+  </p>
+
+
+  <div class="question-form">
+
+    <textarea
+      id="questionInput"
+      placeholder="質問を入力..."
+      rows="4"
+    ></textarea>
+
+
+    <button
+      type="button"
+      id="questionButton"
+    >
+      送信する
+    </button>
 
   </div>
 
