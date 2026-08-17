@@ -408,3 +408,34 @@ prefersDark.addEventListener(
   "change",
   updateTheme
 );
+
+const adminLogin =
+  document.getElementById("adminLogin");
+
+const blogSearch =
+  document.getElementById("blogSearch");
+
+
+if (
+  adminLogin &&
+  blogSearch
+) {
+
+  blogSearch.addEventListener(
+    "input",
+    () => {
+
+      if (
+        blogSearch.value.trim() ===
+        "nida-admin"
+      ) {
+
+        adminLogin.style.display =
+          "block";
+
+      }
+
+    }
+  );
+
+}
