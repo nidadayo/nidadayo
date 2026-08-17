@@ -39,7 +39,6 @@ navLinks.forEach((link) => {
   });
 
 });
-
 /* =================================
    ブログ検索
 ================================= */
@@ -192,7 +191,6 @@ if (
   filterBlogs();
 
 }
-
 /* =================================
    Supabase 接続
 ================================= */
@@ -201,7 +199,7 @@ const SUPABASE_URL =
   "https://lsmghojbzokpbpsyymui.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_smmyqBSNwcWlVL4m_bFJRQ_8GFqYT73";
+  "こsb_publishable_smmyqBSNwcWlVL4m_bFJRQ_8GFqYT73";
 
 
 let supabaseClient = null;
@@ -214,105 +212,5 @@ if (window.supabase) {
       SUPABASE_URL,
       SUPABASE_KEY
     );
-
-}
-
-/* =================================
-   訪問者カウンター
-================================= */
-
-const visitorNumber =
-  document.querySelector(".visitor-number");
-
-
-if (
-  visitorNumber &&
-  supabaseClient
-) {
-
-  async function updateVisitorCount() {
-
-    try {
-
-      const { data, error } =
-        await supabaseClient.rpc(
-          "increment_visitor_count"
-        );
-
-
-      if (error) {
-
-        console.error(
-          "訪問者カウンターエラー:",
-          error
-        );
-
-        return;
-
-      }
-
-
-      if (data !== null) {
-
-        visitorNumber.textContent =
-          String(data).padStart(
-            6,
-            "0"
-          );
-
-      }
-
-    } catch (error) {
-
-      console.error(
-        "訪問者カウンターエラー:",
-        error
-      );
-
-    }
-
-  }
-
-
-  updateVisitorCount();
-
-}
-
-
-        /* =========================
-           成功
-        ========================= */
-
-        questionInput.value = "";
-
-        alert(
-          "質問を送信しました！🎉"
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          "質問送信エラー:",
-          error
-        );
-
-        alert(
-          "送信に失敗しました。\nもう一度試してみてね。"
-        );
-
-
-      } finally {
-
-        questionButton.disabled =
-          false;
-
-        questionButton.textContent =
-          "送信する";
-
-      }
-
-    }
-  );
 
 }
