@@ -277,3 +277,122 @@ if (
   updateVisitorCount();
 
 }
+
+/* =================================
+   質問箱
+================================= */
+
+const questionInput =
+  document.getElementById("questionInput");
+
+const questionButton =
+  document.getElementById("questionButton");
+
+
+if (
+  questionInput &&
+  questionButton &&
+  supabaseClient
+) {
+
+  questionButton.addEventListener(
+    "click",
+    async () => {
+
+      const question =
+        questionInput.value.trim();
+
+
+      /* =========================
+         空欄チェック
+      ========================= */
+
+      if (!question) {
+
+        alert(
+          "質問を入力してね！"
+        );
+
+        return;
+
+      }
+
+
+      /* =========================
+         送信中
+      ========================= */
+
+      questionButton.disabled =
+        true;
+
+      questionButton.textContent =
+        "送信中...";
+
+
+      try {
+
+        const { error } =
+          await supabaseClient
+            .from("questions")
+            .insert({
+              question: question
+            });
+
+
+        /* =========================
+           エラー
+        ========================= */
+
+        if (error) {
+
+          console.error(
+            "質問送信エラー:",
+            error
+          );
+
+          alert(
+            "送信に失敗しました。\nもう一度試してみてね。"
+          );
+
+          return;
+
+        }
+
+
+        /* =========================
+           成功
+        ========================= */
+
+        questionInput.value = "";
+
+        alert(
+          "質問を送信しました！🎉"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "質問送信エラー:",
+          error
+        );
+
+        alert(
+          "送信に失敗しました。\nもう一度試してみてね。"
+        );
+
+
+      } finally {
+
+        questionButton.disabled =
+          false;
+
+        questionButton.textContent =
+          "送信する";
+
+      }
+
+    }
+  );
+
+}
