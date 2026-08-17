@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>ブログ | にだのうぇぶ</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     ヘッダー
+========================= -->
+
+<header class="header">
+
+  <a href="index.html"
+     class="logo">
+
+    にだのうぇぶ
+
+  </a>
+
+
+  <button class="menu-btn"
+          id="menuBtn"
+          aria-label="メニュー">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </button>
+
+
+  <nav class="nav" id="nav">
+
+    <a href="index.html">
+      HOME
+    </a>
+
+    <a href="profile.html">
+      PROFILE
+    </a>
+
+    <a href="blog.html">
+      BLOG
+    </a>
+
+  </nav>
+
+</header>
+
+
+
+<main class="page">
+
+
+<!-- =========================
+     ページタイトル
+========================= -->
+
+<section class="page-title fade-in">
+
+  <p>
+    MY BLOG
+  </p>
+
+  <h1>
+    ブログ
+  </h1>
+
+</section>
+
+
+
+<!-- =========================
+     ブログ検索
+========================= -->
+
+<section class="blog-tools fade-in">
+
+
+  <!-- 検索欄 -->
+
+  <div class="blog-search">
+
+    <span class="search-icon">
+      🔍
+    </span>
+
+    <input
+      type="search"
+      id="blogSearch"
+      placeholder="ブログを検索..."
+      aria-label="ブログを検索"
+    >
+
+  </div>
+
+
+  <!-- 検索件数 -->
+
+  <p
+    class="blog-count"
+    id="blogCount"
+  >
+    2件の記事
+  </p>
+
+
+  <!-- カテゴリー -->
+
+  <div class="blog-categories">
+
+    <button
+      class="category active"
+      data-category="all"
+    >
+      #すべて
+    </button>
+
+    <button
+      class="category"
+      data-category="日記"
+    >
+      #日記
+    </button>
+
+    <button
+      class="category"
+      data-category="推し活"
+    >
+      #推し活
+    </button>
+
+    <button
+      class="category"
+      data-category="Web制作"
+    >
+      #Web制作
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     ブログ一覧
+========================= -->
+
+<section
+  class="blog-list"
+  id="blogList"
+>
+
+
+  <!-- ブログ記事1 -->
+
+  <article
+    class="blog-item fade-in"
+    data-category="Web制作"
+    data-title="ブログはじめました"
+  >
+
+    <p class="blog-date">
+      2026.08.17
+    </p>
+
+
+    <h2>
+      ブログはじめました！
+    </h2>
+
+
+    <p>
+      にだのうぇぶを作ってみた
+    </p>
+
+
+    <div class="blog-item-bottom">
+
+      <span class="blog-tag">
+        #Web制作
+      </span>
+
+      <a
+        href="blog1.html"
+        class="read-more"
+      >
+        READ →
+      </a>
+
+    </div>
+
+  </article>
+
+
+
+  <!-- ブログ記事2 -->
+
+  <article
+    class="blog-item fade-in"
+    data-category="推し活"
+    data-title="ケイちゃんについて"
+  >
+
+    <p class="blog-date">
+      2026.08.18
+    </p>
+
+
+    <h2>
+      ケイちゃんについて
+    </h2>
+
+
+    <p>
+      ケイちゃんのここが好き
+    </p>
+
+
+    <div class="blog-item-bottom">
+
+      <span class="blog-tag">
+        #推し活
+      </span>
+
+      <a
+        href="blog2.html"
+        class="read-more"
+      >
+        READ →
+      </a>
+
+    </div>
+
+  </article>
+
+
+</section>
+
+
+
+<!-- =========================
+     検索結果なし
+========================= -->
+
+<p
+  class="no-results"
+  id="noResults"
+  style="display: none;"
+>
+  該当する記事がありません。
+</p>
+
+
+</main>
+
+
+
+<footer>
+
+  <p>
+    © 2026 にだのうぇぶ
+  </p>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
