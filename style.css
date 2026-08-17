@@ -1299,3 +1299,307 @@ footer {
   }
 
 }
+
+/* =================================
+   おしゃれプロフィール
+================================= */
+
+.profile-page {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 0 20px 100px;
+}
+
+
+/* =================================
+   プロフィール画像
+================================= */
+
+.profile-hero {
+  display: flex;
+
+  justify-content: center;
+
+  margin: 20px 0 70px;
+}
+
+.profile-image {
+  width: 180px;
+  height: 180px;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  background: #f5f5f7;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+/* =================================
+   プロフィール情報
+================================= */
+
+.profile-info {
+  border-top: 1px solid #e5e5e5;
+}
+
+
+.profile-row {
+  display: grid;
+
+  grid-template-columns: 120px 1fr;
+
+  gap: 30px;
+
+  padding: 28px 0;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+
+.profile-label {
+  margin: 0;
+
+  color: #999;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+}
+
+
+.profile-value {
+  margin: 0;
+
+  color: #222;
+
+  font-size: 15px;
+
+  line-height: 1.9;
+}
+
+
+.profile-link {
+  color: #222;
+
+  text-decoration: none;
+
+  transition: opacity 0.25s;
+}
+
+.profile-link:hover {
+  opacity: 0.5;
+}
+
+
+/* =================================
+   共通ボックス
+================================= */
+
+.visitor-box,
+.question-box {
+  margin-top: 70px;
+
+  padding: 40px 30px;
+
+  text-align: center;
+
+  border-top: 1px solid #e5e5e5;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+
+.box-label {
+  margin-bottom: 20px;
+
+  color: #999;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.2em;
+}
+
+
+/* =================================
+   訪問者カウンター
+================================= */
+
+.visitor-number {
+  margin: 0;
+
+  font-size: 42px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+
+.visitor-text {
+  margin-top: 8px;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+
+/* =================================
+   質問箱
+================================= */
+
+.question-box h2 {
+  margin-bottom: 8px;
+
+  font-size: 25px;
+
+  font-weight: 500;
+}
+
+
+.question-description {
+  margin-bottom: 25px;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+
+.question-form {
+  max-width: 520px;
+
+  margin: 0 auto;
+}
+
+
+.question-form textarea {
+  width: 100%;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: #f5f5f7;
+
+  color: #222;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  resize: vertical;
+
+  outline: none;
+
+  transition: 0.25s;
+}
+
+
+.question-form textarea:focus {
+  background: #eeeeF0;
+
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+
+.question-form button {
+  margin-top: 15px;
+
+  padding: 11px 25px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #222;
+
+  color: #fff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+
+.question-form button:hover {
+  opacity: 0.7;
+}
+
+
+/* =================================
+   プロフィール：スマホ
+================================= */
+
+@media (max-width: 768px) {
+
+  .profile-page {
+    padding: 0 18px 70px;
+  }
+
+
+  .profile-hero {
+    margin-bottom: 50px;
+  }
+
+
+  .profile-image {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 20px;
+  }
+
+
+  .profile-row {
+    grid-template-columns: 85px 1fr;
+
+    gap: 15px;
+
+    padding: 23px 0;
+  }
+
+
+  .profile-value {
+    font-size: 14px;
+  }
+
+
+  .visitor-box,
+  .question-box {
+    margin-top: 50px;
+
+    padding: 35px 20px;
+  }
+
+
+  .visitor-number {
+    font-size: 34px;
+  }
+
+}
