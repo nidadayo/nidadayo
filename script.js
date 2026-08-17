@@ -192,3 +192,27 @@ if (
   filterBlogs();
 
 }
+
+/* =================================
+   Supabase 接続
+================================= */
+
+const SUPABASE_URL =
+  "https://lsmghojbzokpbpsyymui.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_smmyqBSNwcWlVL4m_bFJRQ_8GFqYT73";
+
+
+let supabaseClient = null;
+
+
+if (window.supabase) {
+
+  supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+}
