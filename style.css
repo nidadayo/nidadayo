@@ -1603,3 +1603,241 @@ footer {
   }
 
 }
+
+/* =================================
+   スマホのダークモード対応
+================================= */
+
+@media (prefers-color-scheme: dark) {
+
+  /* ================================
+     基本
+  ================================= */
+
+  body {
+
+    background: #111111;
+
+    color: #f5f5f5;
+
+  }
+
+
+  /* ================================
+     ヘッダー
+  ================================= */
+
+  .header {
+
+    background: rgba(17, 17, 17, 0.9);
+
+    border-bottom-color: #2a2a2a;
+
+  }
+
+
+  .logo {
+
+    color: #f5f5f5;
+
+  }
+
+
+  .nav a {
+
+    color: #aaaaaa;
+
+  }
+
+
+  .nav a:hover {
+
+    color: #ffffff;
+
+  }
+
+
+  /* ================================
+     ハンバーガー
+  ================================= */
+
+  .menu-btn span {
+
+    background: #ffffff;
+
+  }
+
+
+  /* ================================
+     ページタイトル
+  ================================= */
+
+  .page-title h1 {
+
+    color: #ffffff;
+
+  }
+
+
+  .page-title p {
+
+    color: #999999;
+
+  }
+
+
+  /* ================================
+     プロフィール
+  ================================= */
+
+  .profile-info {
+
+    background: #1a1a1a;
+
+    color: #f5f5f5;
+
+  }
+
+
+  .profile-label {
+
+    color: #888888;
+
+  }
+
+
+  .profile-value {
+
+    color: #eeeeee;
+
+  }
+
+
+  .profile-link {
+
+    color: #ffffff;
+
+  }
+
+
+  /* ================================
+     訪問者カウンター
+  ================================= */
+
+  .visitor-box {
+
+    background: #1a1a1a;
+
+    color: #ffffff;
+
+  }
+
+
+  .visitor-number {
+
+    color: #ffffff;
+
+  }
+
+
+  .visitor-text {
+
+    color: #999999;
+
+  }
+
+
+  /* ================================
+     質問箱
+  ================================= */
+
+  .question-box {
+
+    background: #1a1a1a;
+
+    color: #ffffff;
+
+  }
+
+
+  .question-description {
+
+    color: #999999;
+
+  }
+
+
+  .question-form textarea {
+
+    background: #111111;
+
+    color: #ffffff;
+
+    border-color: #333333;
+
+  }
+
+
+  .question-form textarea::placeholder {
+
+    color: #777777;
+
+  }
+
+
+  /* ================================
+     ブログ
+  ================================= */
+
+  .blog-item,
+  .latest-blog-card {
+
+    background: #1a1a1a;
+
+    color: #ffffff;
+
+  }
+
+
+  .blog-item h2,
+  .latest-blog-card h3 {
+
+    color: #ffffff;
+
+  }
+
+
+  .blog-item p,
+  .latest-blog-card p {
+
+    color: #aaaaaa;
+
+  }
+
+
+  /* ================================
+     ボタン
+  ================================= */
+
+  .button-light {
+
+    background: #222222;
+
+    color: #ffffff;
+
+    border-color: #333333;
+
+  }
+
+
+  /* ================================
+     フッター
+  ================================= */
+
+  footer {
+
+    color: #888888;
+
+  }
+
+}
