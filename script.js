@@ -2,17 +2,25 @@
    ハンバーガーメニュー
 ================================= */
 
-const menuBtn = document.getElementById("menuBtn");
-const nav = document.getElementById("nav");
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const nav =
+  document.getElementById("nav");
+
 
 if (menuBtn && nav) {
 
-  menuBtn.addEventListener("click", () => {
+  menuBtn.addEventListener(
+    "click",
+    () => {
 
-    menuBtn.classList.toggle("active");
-    nav.classList.toggle("active");
+      menuBtn.classList.toggle("active");
 
-  });
+      nav.classList.toggle("active");
+
+    }
+  );
 
 }
 
@@ -21,20 +29,26 @@ if (menuBtn && nav) {
    メニューをクリックしたら閉じる
 ================================= */
 
-const navLinks = document.querySelectorAll(".nav a");
+const navLinks =
+  document.querySelectorAll(".nav a");
+
 
 navLinks.forEach((link) => {
 
-  link.addEventListener("click", () => {
+  link.addEventListener(
+    "click",
+    () => {
 
-    if (menuBtn && nav) {
+      if (menuBtn && nav) {
 
-      menuBtn.classList.remove("active");
-      nav.classList.remove("active");
+        menuBtn.classList.remove("active");
+
+        nav.classList.remove("active");
+
+      }
 
     }
-
-  });
+  );
 
 });
 
@@ -69,6 +83,7 @@ if (
   const blogItems =
     blogList.querySelectorAll(".blog-item");
 
+
   let currentCategory = "all";
 
 
@@ -79,6 +94,7 @@ if (
         .trim()
         .toLowerCase();
 
+
     let visibleCount = 0;
 
 
@@ -87,6 +103,7 @@ if (
       const title =
         (item.dataset.title || "")
           .toLowerCase();
+
 
       const category =
         item.dataset.category || "";
@@ -144,32 +161,40 @@ if (
   );
 
 
-  categories.forEach((categoryButton) => {
+  categories.forEach(
+    (categoryButton) => {
 
-    categoryButton.addEventListener(
-      "click",
-      () => {
+      categoryButton.addEventListener(
+        "click",
+        () => {
 
-        currentCategory =
-          categoryButton.dataset.category;
-
-
-        categories.forEach((button) => {
-
-          button.classList.remove("active");
-
-        });
+          currentCategory =
+            categoryButton.dataset.category;
 
 
-        categoryButton.classList.add("active");
+          categories.forEach(
+            (button) => {
+
+              button.classList.remove(
+                "active"
+              );
+
+            }
+          );
 
 
-        filterBlogs();
+          categoryButton.classList.add(
+            "active"
+          );
 
-      }
-    );
 
-  });
+          filterBlogs();
+
+        }
+      );
+
+    }
+  );
 
 
   filterBlogs();
@@ -208,7 +233,9 @@ if (window.supabase) {
 ================================= */
 
 const visitorNumber =
-  document.querySelector(".visitor-number");
+  document.querySelector(
+    ".visitor-number"
+  );
 
 
 if (
@@ -270,10 +297,14 @@ if (
 ================================= */
 
 const questionInput =
-  document.getElementById("questionInput");
+  document.getElementById(
+    "questionInput"
+  );
 
 const questionButton =
-  document.getElementById("questionButton");
+  document.getElementById(
+    "questionButton"
+  );
 
 
 if (
@@ -290,8 +321,6 @@ if (
         questionInput.value.trim();
 
 
-      /* 空欄チェック */
-
       if (!question) {
 
         alert(
@@ -303,9 +332,8 @@ if (
       }
 
 
-      /* 送信中 */
-
-      questionButton.disabled = true;
+      questionButton.disabled =
+        true;
 
       questionButton.textContent =
         "送信中...";
@@ -320,8 +348,6 @@ if (
               question: question
             });
 
-
-        /* エラー */
 
         if (error) {
 
@@ -338,8 +364,6 @@ if (
 
         }
 
-
-        /* 成功 */
 
         questionInput.value = "";
 
@@ -362,7 +386,8 @@ if (
 
       } finally {
 
-        questionButton.disabled = false;
+        questionButton.disabled =
+          false;
 
         questionButton.textContent =
           "送信する";
@@ -374,6 +399,186 @@ if (
 
 }
 
+
+/* =================================
+   管理者ログインフォーム
+   秘密ワードで表示
+================================= */
+
+const adminLogin =
+  document.getElementById(
+    "adminLogin"
+  );
+
+
+/*
+   ブログページの検索欄がある場合
+*/
+
+if (
+  adminLogin &&
+  blogSearch
+) {
+
+  blogSearch.addEventListener(
+    "input",
+    () => {
+
+      const keyword =
+        blogSearch.value
+          .trim()
+          .toLowerCase();
+
+
+      if (
+        keyword === "nida-admin"
+      ) {
+
+        adminLogin.style.display =
+          "block";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =================================
+   管理者ログイン
+================================= */
+
+const loginForm =
+  document.getElementById(
+    "loginForm"
+  );
+
+const loginEmail =
+  document.getElementById(
+    "loginEmail"
+  );
+
+const loginPassword =
+  document.getElementById(
+    "loginPassword"
+  );
+
+const loginButton =
+  document.getElementById(
+    "loginButton"
+  );
+
+const loginMessage =
+  document.getElementById(
+    "loginMessage"
+  );
+
+
+if (
+  loginForm &&
+  loginEmail &&
+  loginPassword &&
+  loginButton &&
+  loginMessage &&
+  supabaseClient
+) {
+
+  loginForm.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+
+      const email =
+        loginEmail.value.trim();
+
+
+      const password =
+        loginPassword.value;
+
+
+      loginButton.disabled =
+        true;
+
+
+      loginButton.textContent =
+        "ログイン中...";
+
+
+      loginMessage.textContent =
+        "";
+
+
+      try {
+
+        const { data, error } =
+          await supabaseClient.auth
+            .signInWithPassword({
+              email: email,
+              password: password
+            });
+
+
+        if (error) {
+
+          console.error(
+            "ログインエラー:",
+            error
+          );
+
+
+          loginMessage.textContent =
+            "メールアドレスまたはパスワードが違います。";
+
+
+          return;
+
+        }
+
+
+        if (data.session) {
+
+          loginMessage.textContent =
+            "ログインしました！";
+
+
+          /*
+             ログイン成功後
+             ここではまだ移動しない
+          */
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "ログインエラー:",
+          error
+        );
+
+
+        loginMessage.textContent =
+          "ログインに失敗しました。";
+
+
+      } finally {
+
+        loginButton.disabled =
+          false;
+
+
+        loginButton.textContent =
+          "ログイン";
+
+      }
+
+    }
+  );
+
+}
 
 
 /* =================================
@@ -388,13 +593,19 @@ const prefersDark =
 
 function updateTheme() {
 
-  if (prefersDark.matches) {
+  if (
+    prefersDark.matches
+  ) {
 
-    document.body.classList.add("dark");
+    document.body.classList.add(
+      "dark"
+    );
 
   } else {
 
-    document.body.classList.remove("dark");
+    document.body.classList.remove(
+      "dark"
+    );
 
   }
 
@@ -408,34 +619,3 @@ prefersDark.addEventListener(
   "change",
   updateTheme
 );
-
-const adminLogin =
-  document.getElementById("adminLogin");
-
-const blogSearch =
-  document.getElementById("blogSearch");
-
-
-if (
-  adminLogin &&
-  blogSearch
-) {
-
-  blogSearch.addEventListener(
-    "input",
-    () => {
-
-      if (
-        blogSearch.value.trim() ===
-        "nida-admin"
-      ) {
-
-        adminLogin.style.display =
-          "block";
-
-      }
-
-    }
-  );
-
-}
