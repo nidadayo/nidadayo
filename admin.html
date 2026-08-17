@@ -1,1 +1,156 @@
-<!DOCTYPE html> <html lang="ja"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>管理者ログイン | にだのうぇぶ</title> <link rel="stylesheet" href="style.css"> </head> <body> <!-- ========================= ヘッダー ========================= --> <header class="header"> <a href="index.html" class="logo"> にだのうぇぶ </a> <button class="menu-btn" id="menuBtn" aria-label="メニュー"> <span></span> <span></span> <span></span> </button> <nav class="nav" id="nav"> <a href="index.html"> HOME </a> <a href="profile.html"> PROFILE </a> <a href="blog.html"> BLOG </a> </nav> </header> <main class="page"> <!-- ========================= 管理者ログイン ========================= --> <section class="admin-login fade-in"> <p class="box-label"> ADMIN </p> <h1> 管理者ログイン </h1> <p class="admin-description"> 質問箱を確認するにはログインしてください。 </p> <form id="loginForm" class="admin-form"> <input type="email" id="loginEmail" placeholder="メールアドレス" autocomplete="email" required > <input type="password" id="loginPassword" placeholder="パスワード" autocomplete="current-password" required > <button type="submit" id="loginButton" > ログイン </button> </form> <p id="loginMessage" class="login-message" ></p> </section> </main> <footer> <p> © 2026 にだのうぇぶ </p> </footer> <!-- ========================= Supabase ========================= --> <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <script src="script.js"></script> </body> </html>
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>管理者ログイン | にだのうぇぶ</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     ヘッダー
+========================= -->
+
+<header class="header">
+
+  <a href="index.html"
+     class="logo">
+
+    にだのうぇぶ
+
+  </a>
+
+
+  <button class="menu-btn"
+          id="menuBtn"
+          aria-label="メニュー">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </button>
+
+
+  <nav class="nav" id="nav">
+
+    <a href="index.html">
+      HOME
+    </a>
+
+    <a href="profile.html">
+      PROFILE
+    </a>
+
+    <a href="blog.html">
+      BLOG
+    </a>
+
+  </nav>
+
+</header>
+
+
+
+<main class="page">
+
+
+<!-- =========================
+     管理者ログイン
+========================= -->
+
+<section class="admin-login fade-in">
+
+  <p class="box-label">
+    ADMIN
+  </p>
+
+
+  <h1>
+    管理者ログイン
+  </h1>
+
+
+  <p class="admin-description">
+    質問箱を確認するにはログインしてください。
+  </p>
+
+
+  <form id="loginForm"
+        class="admin-form">
+
+
+    <input
+      type="email"
+      id="loginEmail"
+      placeholder="メールアドレス"
+      autocomplete="email"
+      required
+    >
+
+
+    <input
+      type="password"
+      id="loginPassword"
+      placeholder="パスワード"
+      autocomplete="current-password"
+      required
+    >
+
+
+    <button
+      type="submit"
+      id="loginButton"
+    >
+      ログイン
+    </button>
+
+
+  </form>
+
+
+  <p
+    id="loginMessage"
+    class="login-message"
+  ></p>
+
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+  <p>
+    © 2026 にだのうぇぶ
+  </p>
+
+</footer>
+
+
+
+<!-- =========================
+     Supabase
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
