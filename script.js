@@ -5,7 +5,6 @@
 const menuBtn = document.getElementById("menuBtn");
 const nav = document.getElementById("nav");
 
-
 if (menuBtn && nav) {
 
   menuBtn.addEventListener("click", () => {
@@ -24,7 +23,6 @@ if (menuBtn && nav) {
 
 const navLinks = document.querySelectorAll(".nav a");
 
-
 navLinks.forEach((link) => {
 
   link.addEventListener("click", () => {
@@ -39,14 +37,23 @@ navLinks.forEach((link) => {
   });
 
 });
+
+
 /* =================================
    ブログ検索
 ================================= */
 
-const blogSearch = document.getElementById("blogSearch");
-const blogList = document.getElementById("blogList");
-const blogCount = document.getElementById("blogCount");
-const noResults = document.getElementById("noResults");
+const blogSearch =
+  document.getElementById("blogSearch");
+
+const blogList =
+  document.getElementById("blogList");
+
+const blogCount =
+  document.getElementById("blogCount");
+
+const noResults =
+  document.getElementById("noResults");
 
 const categories =
   document.querySelectorAll(".category");
@@ -62,13 +69,8 @@ if (
   const blogItems =
     blogList.querySelectorAll(".blog-item");
 
-
   let currentCategory = "all";
 
-
-  /* =================================
-     ブログを絞り込む
-  ================================= */
 
   function filterBlogs() {
 
@@ -76,7 +78,6 @@ if (
       blogSearch.value
         .trim()
         .toLowerCase();
-
 
     let visibleCount = 0;
 
@@ -86,7 +87,6 @@ if (
       const title =
         (item.dataset.title || "")
           .toLowerCase();
-
 
       const category =
         item.dataset.category || "";
@@ -119,13 +119,9 @@ if (
     });
 
 
-    /* 件数表示 */
-
     blogCount.textContent =
       `${visibleCount}件の記事`;
 
-
-    /* 検索結果なし */
 
     if (visibleCount === 0) {
 
@@ -142,19 +138,11 @@ if (
   }
 
 
-  /* =================================
-     検索入力
-  ================================= */
-
   blogSearch.addEventListener(
     "input",
     filterBlogs
   );
 
-
-  /* =================================
-     カテゴリー
-  ================================= */
 
   categories.forEach((categoryButton) => {
 
@@ -184,22 +172,21 @@ if (
   });
 
 
-  /* =================================
-     初期表示
-  ================================= */
-
   filterBlogs();
 
 }
+
+
 /* =================================
-   Supabase 接続
+   Supabase
 ================================= */
 
 const SUPABASE_URL =
   "https://lsmghojbzokpbpsyymui.supabase.co";
 
+
 const SUPABASE_KEY =
-  "こsb_publishable_smmyqBSNwcWlVL4m_bFJRQ_8GFqYT73";
+  "sb_publishable_smmyqBSNwcWlVL4m_bFJRQ_8GFqYT73";
 
 
 let supabaseClient = null;
@@ -214,6 +201,8 @@ if (window.supabase) {
     );
 
 }
+
+
 /* =================================
    訪問者カウンター
 ================================= */
@@ -274,6 +263,8 @@ if (
   updateVisitorCount();
 
 }
+
+
 /* =================================
    質問箱
 ================================= */
@@ -299,9 +290,7 @@ if (
         questionInput.value.trim();
 
 
-      /* =========================
-         空欄チェック
-      ========================= */
+      /* 空欄チェック */
 
       if (!question) {
 
@@ -314,12 +303,9 @@ if (
       }
 
 
-      /* =========================
-         送信中
-      ========================= */
+      /* 送信中 */
 
-      questionButton.disabled =
-        true;
+      questionButton.disabled = true;
 
       questionButton.textContent =
         "送信中...";
@@ -335,9 +321,7 @@ if (
             });
 
 
-        /* =========================
-           エラー
-        ========================= */
+        /* エラー */
 
         if (error) {
 
@@ -355,9 +339,7 @@ if (
         }
 
 
-        /* =========================
-           成功
-        ========================= */
+        /* 成功 */
 
         questionInput.value = "";
 
@@ -380,8 +362,7 @@ if (
 
       } finally {
 
-        questionButton.disabled =
-          false;
+        questionButton.disabled = false;
 
         questionButton.textContent =
           "送信する";
@@ -392,3 +373,147 @@ if (
   );
 
 }
+
+
+/* =================================
+   管理者ログイン
+================================= */
+
+const loginForm =
+  document.getElementById("loginForm");
+
+const loginEmail =
+  document.getElementById("loginEmail");
+
+const loginPassword =
+  document.getElementById("loginPassword");
+
+const loginButton =
+  document.getElementById("loginButton");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+
+if (
+  loginForm &&
+  loginEmail &&
+  loginPassword &&
+  loginButton &&
+  loginMessage &&
+  supabaseClient
+) {
+
+  loginForm.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+
+      const email =
+        loginEmail.value.trim();
+
+      const password =
+        loginPassword.value;
+
+
+      loginButton.disabled = true;
+
+      loginButton.textContent =
+        "ログイン中...";
+
+      loginMessage.textContent = "";
+
+
+      try {
+
+        const { data, error } =
+          await supabaseClient.auth
+            .signInWithPassword({
+              email: email,
+              password: password
+            });
+
+
+        if (error) {
+
+          console.error(
+            "ログインエラー:",
+            error
+          );
+
+          loginMessage.textContent =
+            "メールアドレスまたはパスワードが違います。";
+
+          return;
+
+        }
+
+
+        if (data.session) {
+
+          loginMessage.textContent =
+            "ログインしました！";
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "ログインエラー:",
+          error
+        );
+
+        loginMessage.textContent =
+          "ログインに失敗しました。";
+
+
+      } finally {
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+          "ログイン";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =================================
+   スマホのダークモード
+================================= */
+
+const prefersDark =
+  window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  );
+
+
+function updateTheme() {
+
+  if (prefersDark.matches) {
+
+    document.body.classList.add("dark");
+
+  } else {
+
+    document.body.classList.remove("dark");
+
+  }
+
+}
+
+
+updateTheme();
+
+
+prefersDark.addEventListener(
+  "change",
+  updateTheme
+);
