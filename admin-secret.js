@@ -1,5 +1,5 @@
 /* =================================
-   管理者ログイン
+   管理者機能
    admin-secret.js
 ================================= */
 
@@ -11,6 +11,7 @@
 const ADMIN_SUPABASE_URL =
   "https://lsmghojbzokpbpsyymui.supabase.co";
 
+
 const ADMIN_SUPABASE_KEY =
   "sb_publishable_smmyqBSNwcWlVL4m_bFJRQ_8GFqYT73";
 
@@ -20,6 +21,7 @@ const ADMIN_SUPABASE_KEY =
 ================================= */
 
 let adminSupabase = null;
+
 
 if (window.supabase) {
 
@@ -33,7 +35,7 @@ if (window.supabase) {
 
 
 /* =================================
-   要素取得
+   HTML要素
 ================================= */
 
 const adminSecretButton =
@@ -41,34 +43,58 @@ const adminSecretButton =
     "adminSecretButton"
   );
 
+
 const adminLogin =
   document.getElementById(
     "adminLogin"
   );
+
 
 const loginForm =
   document.getElementById(
     "loginForm"
   );
 
+
 const loginEmail =
   document.getElementById(
     "loginEmail"
   );
+
 
 const loginPassword =
   document.getElementById(
     "loginPassword"
   );
 
+
 const loginButton =
   document.getElementById(
     "loginButton"
   );
 
+
 const loginMessage =
   document.getElementById(
     "loginMessage"
+  );
+
+
+const adminPanel =
+  document.getElementById(
+    "adminPanel"
+  );
+
+
+const adminStatus =
+  document.getElementById(
+    "adminStatus"
+  );
+
+
+const questionList =
+  document.getElementById(
+    "questionList"
   );
 
 
@@ -81,7 +107,7 @@ const ADMIN_SECRET_WORD =
 
 
 /* =================================
-   秘密ワード入力
+   秘密ワード入口
 ================================= */
 
 if (
@@ -99,14 +125,12 @@ if (
         );
 
 
-      /* キャンセル */
-
       if (input === null) {
+
         return;
+
       }
 
-
-      /* 秘密ワード確認 */
 
       if (
         input === ADMIN_SECRET_WORD
@@ -137,14 +161,182 @@ if (
 
 
 /* =================================
-   Supabaseが読み込まれているか確認
+   質問一覧を取得
 ================================= */
 
-if (!adminSupabase) {
+async function loadQuestions() {
 
-  console.error(
-    "Supabaseが読み込まれていません。"
-  );
+  if (
+    !adminSupabase ||
+    !questionList
+  ) {
+
+    return;
+
+  }
+
+
+  if (adminStatus) {
+
+    adminStatus.textContent =
+      "質問を読み込んでいます...";
+
+  }
+
+
+  questionList.innerHTML = "";
+
+
+  try {
+
+    const {
+      data,
+      error
+    } = await adminSupabase
+      .from("questions")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+    if (error) {
+
+      console.error(
+        "質問取得エラー:",
+        error
+      );
+
+
+      if (adminStatus) {
+
+        adminStatus.textContent =
+          "質問を取得できませんでした。";
+
+      }
+
+      return;
+
+    }
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      if (adminStatus) {
+
+        adminStatus.textContent =
+          "まだ質問はありません。";
+
+      }
+
+      return;
+
+    }
+
+
+    if (adminStatus) {
+
+      adminStatus.textContent =
+        `${data.length}件の質問があります。`;
+
+    }
+
+
+    data.forEach(
+      (question) => {
+
+        const questionBox =
+          document.createElement(
+            "div"
+          );
+
+
+        questionBox.className =
+          "admin-question";
+
+
+        const questionText =
+          document.createElement(
+            "p"
+          );
+
+
+        questionText.className =
+          "admin-question-text";
+
+
+        questionText.textContent =
+          question.question;
+
+
+        questionBox.appendChild(
+          questionText
+        );
+
+
+        if (
+          question.created_at
+        ) {
+
+          const date =
+            document.createElement(
+              "small"
+            );
+
+
+          date.className =
+            "admin-question-date";
+
+
+          const formattedDate =
+            new Date(
+              question.created_at
+            ).toLocaleString(
+              "ja-JP"
+            );
+
+
+          date.textContent =
+            formattedDate;
+
+
+          questionBox.appendChild(
+            date
+          );
+
+        }
+
+
+        questionList.appendChild(
+          questionBox
+        );
+
+      }
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "質問取得エラー:",
+      error
+    );
+
+
+    if (adminStatus) {
+
+      adminStatus.textContent =
+        "エラーが発生しました。";
+
+    }
+
+  }
 
 }
 
@@ -169,18 +361,18 @@ if (
       event.preventDefault();
 
 
-      /* 入力内容 */
-
       const email =
         loginEmail.value.trim();
+
 
       const password =
         loginPassword.value;
 
 
-      /* 空欄チェック */
-
-      if (!email || !password) {
+      if (
+        !email ||
+        !password
+      ) {
 
         loginMessage.textContent =
           "メールアドレスとパスワードを入力してください。";
@@ -190,13 +382,13 @@ if (
       }
 
 
-      /* ログイン中 */
-
       loginButton.disabled =
         true;
 
+
       loginButton.textContent =
         "ログイン中...";
+
 
       loginMessage.textContent =
         "";
@@ -204,9 +396,10 @@ if (
 
       try {
 
-        /* Supabase Auth */
-
-        const { data, error } =
+        const {
+          data,
+          error
+        } =
           await adminSupabase.auth
             .signInWithPassword({
 
@@ -217,27 +410,26 @@ if (
             });
 
 
-        /* エラー */
-
         if (error) {
 
           console.error(
-            "Supabaseログインエラー:",
+            "ログインエラー:",
             error
           );
 
 
           loginMessage.textContent =
-            "ログインに失敗しました。";
+            "メールアドレスまたはパスワードが違います。";
 
           return;
 
         }
 
 
-        /* ログイン成功 */
-
-        if (data.session) {
+        if (
+          data &&
+          data.session
+        ) {
 
           loginMessage.textContent =
             "ログイン成功！🎉";
@@ -248,12 +440,34 @@ if (
           );
 
 
-          /*
-             今後ここに
-             管理画面への処理を追加できる
-          */
+          /* ログインフォームを隠す */
+
+          adminLogin.style.display =
+            "none";
+
+
+          /* 管理者パネルを表示 */
+
+          if (adminPanel) {
+
+            adminPanel.style.display =
+              "block";
+
+
+            adminPanel.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+          }
+
+
+          /* 質問を取得 */
+
+          await loadQuestions();
 
         }
+
 
       } catch (error) {
 
@@ -272,6 +486,7 @@ if (
         loginButton.disabled =
           false;
 
+
         loginButton.textContent =
           "ログイン";
 
@@ -284,24 +499,9 @@ if (
 
 
 /* =================================
-   デバッグ
+   起動確認
 ================================= */
 
 console.log(
   "admin-secret.js 読み込み成功"
-);
-
-console.log(
-  "秘密入口:",
-  !!adminSecretButton
-);
-
-console.log(
-  "ログインフォーム:",
-  !!loginForm
-);
-
-console.log(
-  "Supabase:",
-  !!adminSupabase
 );
