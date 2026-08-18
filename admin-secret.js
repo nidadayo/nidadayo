@@ -1,47 +1,128 @@
-const adminSecretButton =
-  document.getElementById(
-    "adminSecretButton"
+/* =================================
+   管理者ログイン
+================================= */
+
+const loginForm =
+  document.getElementById("loginForm");
+
+const loginEmail =
+  document.getElementById("loginEmail");
+
+const loginPassword =
+  document.getElementById("loginPassword");
+
+const loginButton =
+  document.getElementById("loginButton");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+
+/* Supabase */
+
+const SUPABASE_URL =
+  "https://lsmghojbzokpbpsyymui.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_smmyqBSNwcWlVL4m_bFJRQ_8GFqYT73";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
   );
 
-const adminLogin =
-  document.getElementById(
-    "adminLogin"
-  );
 
-
-const secretWord =
-  "nida-admin";
-
+/* =================================
+   ログイン
+================================= */
 
 if (
-  adminSecretButton &&
-  adminLogin
+  loginForm &&
+  loginEmail &&
+  loginPassword &&
+  loginButton &&
+  loginMessage
 ) {
 
-  adminSecretButton.addEventListener(
-    "click",
-    () => {
+  loginForm.addEventListener(
+    "submit",
+    async (event) => {
 
-      const word =
-        prompt(
-          "秘密ワードを入力してください"
+      event.preventDefault();
+
+
+      const email =
+        loginEmail.value.trim();
+
+      const password =
+        loginPassword.value;
+
+
+      loginButton.disabled = true;
+
+      loginButton.textContent =
+        "ログイン中...";
+
+      loginMessage.textContent =
+        "";
+
+
+      try {
+
+        const { data, error } =
+          await supabaseClient.auth
+            .signInWithPassword({
+              email: email,
+              password: password
+            });
+
+
+        if (error) {
+
+          console.error(
+            "ログインエラー:",
+            error
+          );
+
+          loginMessage.textContent =
+            "ログインに失敗しました。";
+
+          return;
+
+        }
+
+
+        if (data.session) {
+
+          loginMessage.textContent =
+            "ログイン成功！🎉";
+
+          alert(
+            "管理者ログインに成功しました！"
+          );
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "ログインエラー:",
+          error
         );
 
+        loginMessage.textContent =
+          "エラーが発生しました。";
 
-      if (
-        word === secretWord
-      ) {
 
-        adminLogin.style.display =
-          "block";
+      } finally {
 
-      } else if (
-        word !== null
-      ) {
+        loginButton.disabled = false;
 
-        alert(
-          "秘密ワードが違います。"
-        );
+        loginButton.textContent =
+          "ログイン";
 
       }
 
