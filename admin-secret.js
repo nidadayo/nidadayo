@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 const testButton =
   document.getElementById("testButton");
 
@@ -533,3 +534,5 @@ if (
 console.log(
   "admin-secret.js 起動完了"
 );
+
+                          });
