@@ -11,7 +11,6 @@
 const ADMIN_SUPABASE_URL =
   "https://lsmghojbzokpbpsyymui.supabase.co";
 
-
 const ADMIN_SUPABASE_KEY =
   "sb_publishable_smmyqBSNwcWlVL4m_bFJRQ_8GFqYT73";
 
@@ -22,7 +21,6 @@ const ADMIN_SUPABASE_KEY =
 
 let adminSupabase = null;
 
-
 if (window.supabase) {
 
   adminSupabase =
@@ -30,6 +28,12 @@ if (window.supabase) {
       ADMIN_SUPABASE_URL,
       ADMIN_SUPABASE_KEY
     );
+
+} else {
+
+  console.error(
+    "Supabaseが読み込まれていません。"
+  );
 
 }
 
@@ -43,54 +47,45 @@ const adminSecretButton =
     "adminSecretButton"
   );
 
-
 const adminLogin =
   document.getElementById(
     "adminLogin"
   );
-
 
 const loginForm =
   document.getElementById(
     "loginForm"
   );
 
-
 const loginEmail =
   document.getElementById(
     "loginEmail"
   );
-
 
 const loginPassword =
   document.getElementById(
     "loginPassword"
   );
 
-
 const loginButton =
   document.getElementById(
     "loginButton"
   );
-
 
 const loginMessage =
   document.getElementById(
     "loginMessage"
   );
 
-
 const adminPanel =
   document.getElementById(
     "adminPanel"
   );
 
-
 const adminStatus =
   document.getElementById(
     "adminStatus"
   );
-
 
 const questionList =
   document.getElementById(
@@ -126,9 +121,7 @@ if (
 
 
       if (input === null) {
-
         return;
-
       }
 
 
@@ -139,12 +132,10 @@ if (
         adminLogin.style.display =
           "block";
 
-
         adminLogin.scrollIntoView({
           behavior: "smooth",
           block: "center"
         });
-
 
       } else {
 
@@ -170,6 +161,10 @@ async function loadQuestions() {
     !adminSupabase ||
     !questionList
   ) {
+
+    console.error(
+      "Supabaseまたは質問一覧のHTMLが見つかりません。"
+    );
 
     return;
 
@@ -364,7 +359,6 @@ if (
       const email =
         loginEmail.value.trim();
 
-
       const password =
         loginPassword.value;
 
@@ -385,10 +379,8 @@ if (
       loginButton.disabled =
         true;
 
-
       loginButton.textContent =
         "ログイン中...";
-
 
       loginMessage.textContent =
         "";
@@ -402,18 +394,15 @@ if (
         } =
           await adminSupabase.auth
             .signInWithPassword({
-
               email: email,
-
               password: password
-
             });
 
 
         if (error) {
 
           console.error(
-            "ログインエラー:",
+            "Supabaseログインエラー:",
             error
           );
 
@@ -468,7 +457,6 @@ if (
 
         }
 
-
       } catch (error) {
 
         console.error(
@@ -480,12 +468,10 @@ if (
         loginMessage.textContent =
           "ログイン中にエラーが発生しました。";
 
-
       } finally {
 
         loginButton.disabled =
           false;
-
 
         loginButton.textContent =
           "ログイン";
@@ -493,6 +479,12 @@ if (
       }
 
     }
+  );
+
+} else {
+
+  console.error(
+    "管理者ログインに必要なHTML要素が見つかりません。"
   );
 
 }
@@ -504,4 +496,24 @@ if (
 
 console.log(
   "admin-secret.js 読み込み成功"
+);
+
+console.log(
+  "adminSecretButton:",
+  !!adminSecretButton
+);
+
+console.log(
+  "loginForm:",
+  !!loginForm
+);
+
+console.log(
+  "adminPanel:",
+  !!adminPanel
+);
+
+console.log(
+  "adminSupabase:",
+  !!adminSupabase
 );
