@@ -298,7 +298,7 @@
 
 </main>
 
-  <section
+<section
   id="adminLogin"
   style="display: none;"
 >
@@ -307,26 +307,37 @@
     管理者ログイン
   </h2>
 
-  <input
-    type="email"
-    id="adminEmail"
-    placeholder="メールアドレス"
-  >
+  <form id="loginForm">
 
-  <input
-    type="password"
-    id="adminPassword"
-    placeholder="パスワード"
-  >
+    <input
+      type="email"
+      id="loginEmail"
+      placeholder="メールアドレス"
+      autocomplete="email"
+      required
+    >
 
-  <button
-    type="button"
-    id="adminLoginButton"
-  >
-    ログイン
-  </button>
+    <input
+      type="password"
+      id="loginPassword"
+      placeholder="パスワード"
+      autocomplete="current-password"
+      required
+    >
 
-  </section>
+    <button
+      type="submit"
+      id="loginButton"
+    >
+      ログイン
+    </button>
+
+    <p id="loginMessage"></p>
+
+  </form>
+
+</section>
+
 
 <footer>
 
