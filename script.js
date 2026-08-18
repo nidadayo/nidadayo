@@ -620,39 +620,55 @@ prefersDark.addEventListener(
   updateTheme
 );
 
+
 /* =================================
-   秘密ワードで管理者ログインを表示
+   管理者秘密入口
 ================================= */
 
+const adminSecretButton =
+  document.getElementById(
+    "adminSecretButton"
+  );
+
 const adminLogin =
-  document.getElementById("adminLogin");
+  document.getElementById(
+    "adminLogin"
+  );
+
 
 const secretWord =
   "nida-admin";
 
 
-if (adminLogin) {
+if (
+  adminSecretButton &&
+  adminLogin
+) {
 
-  document.addEventListener(
-    "keydown",
-    (event) => {
+  adminSecretButton.addEventListener(
+    "click",
+    () => {
+
+      const word =
+        prompt(
+          "秘密ワードを入力してください"
+        );
+
 
       if (
-        event.key === "Enter"
+        word === secretWord
       ) {
 
-        const word =
-          prompt("秘密ワードを入力してください");
+        adminLogin.style.display =
+          "block";
 
+      } else if (
+        word !== null
+      ) {
 
-        if (
-          word === secretWord
-        ) {
-
-          adminLogin.style.display =
-            "block";
-
-        }
+        alert(
+          "秘密ワードが違います。"
+        );
 
       }
 
