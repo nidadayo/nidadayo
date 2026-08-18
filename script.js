@@ -619,3 +619,44 @@ prefersDark.addEventListener(
   "change",
   updateTheme
 );
+
+/* =================================
+   秘密ワードで管理者ログインを表示
+================================= */
+
+const adminLogin =
+  document.getElementById("adminLogin");
+
+const secretWord =
+  "nida-admin";
+
+
+if (adminLogin) {
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (
+        event.key === "Enter"
+      ) {
+
+        const word =
+          prompt("秘密ワードを入力してください");
+
+
+        if (
+          word === secretWord
+        ) {
+
+          adminLogin.style.display =
+            "block";
+
+        }
+
+      }
+
+    }
+  );
+
+}
