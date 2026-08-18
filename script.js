@@ -1,3 +1,4 @@
+console.log("script.js 読み込み成功");
 /* =================================
    ハンバーガーメニュー
 ================================= */
@@ -638,3 +639,4 @@ prefersDark.addEventListener(
   "change",
   updateTheme
 );
+console.log("script.js 最後まで実行成功");
