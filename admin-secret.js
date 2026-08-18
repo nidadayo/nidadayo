@@ -1,3 +1,16 @@
+const testButton =
+  document.getElementById("testButton");
+
+if (testButton) {
+
+  testButton.addEventListener(
+    "click",
+    () => {
+      alert("TESTボタン動いた！");
+    }
+  );
+
+}
 /* =================================
    管理者機能
    admin-secret.js
