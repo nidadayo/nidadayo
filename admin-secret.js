@@ -517,3 +517,4 @@ console.log(
   "adminSupabase:",
   !!adminSupabase
 );
+alert("admin-secret.js は読み込まれています！");
