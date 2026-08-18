@@ -1,3 +1,4 @@
+alert("admin-secret.js 起動！");
 /* =================================
    管理者機能
    admin-secret.js
