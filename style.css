@@ -2076,3 +2076,40 @@ footer {
 .admin-secret-button:hover {
   opacity: 1;
 }
+
+#adminPanel {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+#adminPanel h2 {
+  margin-bottom: 10px;
+}
+
+#adminStatus {
+  color: #777;
+  font-size: 14px;
+}
+
+.admin-question {
+  margin-top: 12px;
+  padding: 14px;
+  background: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.admin-question-text {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.admin-question-date {
+  display: block;
+  margin-top: 8px;
+  color: #888;
+  font-size: 12px;
+}
