@@ -335,6 +335,7 @@ if (
       questionButton.disabled =
         true;
 
+
       questionButton.textContent =
         "送信中...";
 
@@ -356,9 +357,11 @@ if (
             error
           );
 
+
           alert(
             "送信に失敗しました。\nもう一度試してみてね。"
           );
+
 
           return;
 
@@ -366,6 +369,7 @@ if (
 
 
         questionInput.value = "";
+
 
         alert(
           "質問を送信しました！🎉"
@@ -379,6 +383,7 @@ if (
           error
         );
 
+
         alert(
           "送信に失敗しました。\nもう一度試してみてね。"
         );
@@ -388,6 +393,7 @@ if (
 
         questionButton.disabled =
           false;
+
 
         questionButton.textContent =
           "送信する";
@@ -401,9 +407,13 @@ if (
 
 
 /* =================================
-   管理者ログインフォーム
-   秘密ワードで表示
+   管理者秘密入口
 ================================= */
+
+const adminSecretButton =
+  document.getElementById(
+    "adminSecretButton"
+  );
 
 const adminLogin =
   document.getElementById(
@@ -411,31 +421,46 @@ const adminLogin =
   );
 
 
-/*
-   ブログページの検索欄がある場合
-*/
+const secretWord =
+  "nida-admin";
+
 
 if (
-  adminLogin &&
-  blogSearch
+  adminSecretButton &&
+  adminLogin
 ) {
 
-  blogSearch.addEventListener(
-    "input",
+  adminSecretButton.addEventListener(
+    "click",
     () => {
 
-      const keyword =
-        blogSearch.value
-          .trim()
-          .toLowerCase();
+      const word =
+        prompt(
+          "秘密ワードを入力してください"
+        );
 
 
       if (
-        keyword === "nida-admin"
+        word === secretWord
       ) {
 
         adminLogin.style.display =
           "block";
+
+
+        adminLogin.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+
+      } else if (
+        word !== null
+      ) {
+
+        alert(
+          "秘密ワードが違います。"
+        );
 
       }
 
@@ -543,12 +568,6 @@ if (
           loginMessage.textContent =
             "ログインしました！";
 
-
-          /*
-             ログイン成功後
-             ここではまだ移動しない
-          */
-
         }
 
 
@@ -619,55 +638,3 @@ prefersDark.addEventListener(
   "change",
   updateTheme
 );
-
-const adminSecretButton =
-  document.getElementById(
-    "adminSecretButton"
-  );
-
-const adminLogin =
-  document.getElementById(
-    "adminLogin"
-  );
-
-
-const secretWord =
-  "nida-admin";
-
-
-if (
-  adminSecretButton &&
-  adminLogin
-) {
-
-  adminSecretButton.addEventListener(
-    "click",
-    () => {
-
-      const word =
-        prompt(
-          "秘密ワードを入力してください"
-        );
-
-
-      if (
-        word === secretWord
-      ) {
-
-        adminLogin.style.display =
-          "block";
-
-      } else if (
-        word !== null
-      ) {
-
-        alert(
-          "秘密ワードが違います。"
-        );
-
-      }
-
-    }
-  );
-
-}
