@@ -372,120 +372,15 @@ if (
   loginMessage
 ) {
 
-  loginForm.addEventListener(
-    "submit",
-    async (event) => {
+  loginForm.addEventListener("submit", function(event) {
 
-      event.preventDefault();
+    event.preventDefault();
 
+    alert("ログインボタンの処理が動いた！！！");
 
-      const email =
-        loginEmail.value.trim();
+  });
 
-
-      const password =
-        loginPassword.value;
-
-
-      if (
-        !email ||
-        !password
-      ) {
-
-        loginMessage.textContent =
-          "メールアドレスとパスワードを入力してください。";
-
-        return;
-
-      }
-
-
-      loginButton.disabled =
-        true;
-
-      loginButton.textContent =
-        "ログイン中...";
-
-      loginMessage.textContent =
-        "";
-
-
-      try {
-
-        console.log(
-          "ログイン開始"
-        );
-
-
-        const {
-          data,
-          error
-        } =
-          await adminSupabase.auth
-            .signInWithPassword({
-
-              email: email,
-
-              password: password
-
-            });
-
-
-        if (error) {
-
-          console.error(
-            "ログインエラー:",
-            error
-          );
-
-
-          loginMessage.textContent =
-            "メールアドレスまたはパスワードが違います。";
-
-          return;
-
-        }
-
-
-        if (
-          data &&
-          data.session
-        ) {
-
-          console.log(
-            "ログイン成功"
-          );
-
-
-          loginMessage.textContent =
-            "ログイン成功！🎉";
-
-
-          alert(
-            "管理者ログインに成功しました！"
-          );
-
-
-          /* ログインフォームを隠す */
-
-          adminLogin.style.display =
-            "none";
-
-
-          /* 管理者パネルを表示 */
-
-          if (adminPanel) {
-
-            adminPanel.style.display =
-              "block";
-
-
-            adminPanel.scrollIntoView({
-              behavior: "smooth",
-              block: "center"
-            });
-
-          }
+}
 
 
           /* 質問を取得 */
