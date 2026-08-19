@@ -536,3 +536,16 @@ console.log(
 );
 
                           });
+
+alert(
+  "loginForm = " +
+  !!document.getElementById("loginForm") +
+  "\nloginEmail = " +
+  !!document.getElementById("loginEmail") +
+  "\nloginPassword = " +
+  !!document.getElementById("loginPassword") +
+  "\nloginButton = " +
+  !!document.getElementById("loginButton") +
+  "\nloginMessage = " +
+  !!document.getElementById("loginMessage")
+);
