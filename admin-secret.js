@@ -372,15 +372,9 @@ if (
   loginMessage
 ) {
 
-  loginForm.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    alert("ログインボタンの処理が動いた！！！");
-
-  });
-
-}
+  loginButton.addEventListener("click", function() {
+  alert("ログインボタン直接クリック成功！");
+});
 
 
           /* 質問を取得 */
